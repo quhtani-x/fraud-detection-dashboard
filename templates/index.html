@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>fraud detection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="wrap">
+    <h1>🛡️ fraud detection dashboard</h1>
+    <p class="sub">an isolation forest flags transactions that don't look normal</p>
+
+    <!-- live check form -->
+    <div class="check">
+      <input id="amount" type="number" placeholder="amount $" value="120" />
+      <input id="hour" type="number" placeholder="hour 0-23" value="3" />
+      <input id="distance" type="number" placeholder="km from home" value="600" />
+      <button onclick="check()">score it</button>
+      <span id="out" class="out"></span>
+    </div>
+
+    <!-- table of example transactions -->
+    <table>
+      <tr><th>amount</th><th>hour</th><th>km from home</th><th>score</th><th>verdict</th></tr>
+      {% for r in rows %}
+      <tr>
+        <td>${{ r.amount }}</td>
+        <td>{{ r.hour }}:00</td>
+        <td>{{ r.distance }}</td>
+        <td>{{ r.score }}</td>
+        <td><span class="badge {{ r.label }}">{{ r.label }}</span></td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <script>
+    async function check() {
+      const body = {
+        amount: document.getElementById("amount").value,
+        hour: document.getElementById("hour").value,
+        distance: document.getElementById("distance").value,
+      };
+      const r = await fetch("/check", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      }).then((x) => x.json());
+      const out = document.getElementById("out");
+      out.textContent = `${r.label.toUpperCase()} (score ${r.score})`;
+      out.style.color = r.label === "fraud" ? "#e74c3c" : "#2ecc71";
+    }
+  </script>
+</body>
+</html>

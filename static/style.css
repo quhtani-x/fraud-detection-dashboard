@@ -1,0 +1,19 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { font-family: system-ui, sans-serif; background: #0f1419; color: #e6e6e6; padding: 30px; }
+.wrap { max-width: 760px; margin: 0 auto; }
+h1 { margin-bottom: 6px; }
+.sub { color: #8a93a0; margin-bottom: 24px; }
+
+.check { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; align-items: center; }
+.check input { padding: 10px; border: 1px solid #2a3340; border-radius: 8px; background: #1a212b; color: #fff; width: 130px; }
+.check button { padding: 10px 18px; border: none; border-radius: 8px; background: #3498db; color: #fff; cursor: pointer; }
+.out { font-weight: bold; margin-left: 8px; }
+
+table { width: 100%; border-collapse: collapse; background: #1a212b; border-radius: 10px; overflow: hidden; }
+th, td { padding: 12px; text-align: left; border-bottom: 1px solid #2a3340; }
+th { font-size: 0.8rem; text-transform: uppercase; color: #8a93a0; }
+
+.badge { padding: 3px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; }
+.badge.ok { background: #15402b; color: #2ecc71; }
+.badge.fraud { background: #4a1f23; color: #e74c3c; }
