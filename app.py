@@ -1,6 +1,7 @@
 import numpy as np
 from flask import Flask, render_template, request, jsonify
 from sklearn.ensemble import IsolationForest
+# DISCLAIMER , some  comments has been added by Ai as my code didnt have much comments and i told the Ai to explain the code , also remove dead commented code
 
 # FRAUD DETECTION DASHBOARD.
 # trains an Isolation Forest (an anomaly-detection model) on normal credit-card
